@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>list login</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap3.2.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4" style="margin-top: 50px">
+            <div class="row">
+                <div class="col-xs-offset-4 mylogo">
+                    <h1>My todo list</h1>
+                </div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">用户姓名</label>
+                    <input type="text" class="form-control " id="username0" placeholder="姓名">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">密码</label>
+                    <input type="password" class="form-control " id="password0" placeholder="密码">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> Check me out
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default" id="be_sure">登入</button>
+                <button type="submit" class="btn btn-default" id="be_sures">注册</button>
+            </form>
+        </div>
+
+    </div>
+
+
+</div>
+</body>
+</html>
+<script>
+    //登录脚本
+    $('#be_sure').click(function () {
+        var username = $('#username0').val();
+        var password = $('#password0').val();
+        var body = {'username': username, 'password': password};
+        var p=JSON.stringify(body);
+
+        $.ajax({
+            url: 'login',
+            type: 'post',
+            data: p,
+            success: function (res) {
+                alert('success')
+
+            },
+            error: function (res) {
+                alert(res);
+            }
+        });
+        return false;
+    });
+
+{#        注册#}
+         $('#be_sures').click(function () {
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var body = {'username': username, 'password': password};
+            var p=JSON.stringify(body);
+
+            $.ajax({
+                url: 'login',
+                type: 'post',
+                data: p,
+                success: function (res) {
+                    window.location.href = "/login";
+                },
+                error: function (res) {
+                    alert(res);
+                }
+            });
+            return false;
+        });
+</script>
